@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>JavaScript &amp; Jquery - Chapter 2: Basic JavaSCript Instructions - Example</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	</head>
+    <body>
+				<div class="jumbotron">
+					<h1>FizzBuzz Exercise:</h1>
+					<br>
+					<p>
+					Write a program that uses console.log to print all the numbers from 1 to 100, with two exceptions. For numbers divisible by 3, print "Fizz" instead of the number, and for numbers divisible by 5 (and not 3), print "Buzz" instead.
+
+					When you have that working, modify your program to print "FizzBuzz", for numbers that are divisible by both 3 and 5 (and still print "Fizz" or "Buzz" for numbers divisible by only one of those).
+
+					(This is actually an interview question that has been claimed to weed out a significant percentage of programmer candidates. So if you solved it, you’re now allowed to feel good about yourself.)
+					</p>
+					<h3>You can check my results in the console.</h3>
+					<p>
+					I've also created a form using this same program which takes the input and displays the expected result. Check out the form below.
+					</p>
+				</div>
+				<div class="container">
+					  <form name="form1" >
+              <label>Enter number: 
+                <input type="text" name="num"> 
+              </label>
+            </form>
+						<br>
+            <button onclick="submit()">Submit</button>
+            <br><br>
+						<div>Result: <span id="result" style="font-size: 2em;"></span></div>
+				</div>
+				<script>
+				//step 1. console.log numbers 1 to 100
+					
+				//for loop, first semi-colon initializes the loop
+				//second semi-colon checks whether the loop should continue
+				//final part updates the loop after every iteration
+					
+//				for (var x = 0; x <= 100; x = x + 1)
+//						 console.log(x);
+					
+				//step 2. for numbers divisible by 3, print "fizz" instead of the number and for numbers divisble by 5 print "buzz"
+					
+//				for (var x = 0; x <= 100; x += 1) {
+//					if ((x % 3 != 0) && (x % 5 != 0)) { 
+//						//if the number is not divisible by 3 or 5, print the number
+//						console.log(x);
+//					} else {
+//						//if the number is divisible by 3, than print "buzz"
+//						if (x % 3 == 0) {
+//							console.log("fizz");
+//						//if the number is not divisble by 3, it must be the other condition that we had set on line 26. x is divisible by 5, print "buzz"
+//						} else {
+//							console.log("buzz");
+//						}
+//					}
+//				}
+				
+				//issues: in some instances a number is divisible by both 3 and 5, but line 31 supercedes line 34 so the console prints "fizz"
+					
+				//e.g. see how on 15, it prints "fizz"
+					
+				//step 3. modify the program to print "fizzbuzz" for numbers that are divisible by both 3 and 5.
+					
+					for (var x = 1; x <= 100; x += 1) {
+						if ((x % 3 != 0) && (x % 5 != 0)) { 
+							//if the number is not divisible by 3 or 5, print the number
+							console.log(x);
+						} else {
+							if ( x % 3 == 0 && x % 5 == 0) {
+								//if the number is divisble by both 3 and 5, print "FizzBuzz"
+								console.log("FizzBuzz");
+							} else {
+								//if the number is divisible by 3, than print "buzz"
+								if (x % 3 == 0) {
+									console.log("fizz");
+								//if the number is not divisble by 3, it must be the other condition that we had set on line 26. x is divisible by 5, print "buzz"
+								} else {
+									console.log("buzz");
+								}
+							}
+						}
+					}
+				
+				//if we want to print the results into an html page we need to present it as a function which can called upon 
+					
+				function submit() {
+					event.preventDefault(); //stops default action from happening
+
+					var x = Number(document.form1.num.value);
+					
+					if (x % 3 != 0 && x % 5 != 0) { 
+							//if the number is not divisible by 3 or 5, print the number
+							var result = x;
+						} else {
+							if ( x % 3 == 0 && x % 5 == 0) {
+								//if the number is divisble by both 3 and 5, print "FizzBuzz"
+								var result = "FizzBuzz";
+							} else {
+								//if the number is divisible by 3, than print "buzz"
+								if (x % 3 == 0) {
+									var result = "Fizz";
+								//if the number is not divisble by 3, it must be the other condition that we had set on line 26. x is divisible by 5, print "buzz"
+								} else {
+									var result = "Buzz";
+								}
+							}
+						}
+						document.getElementById("result").innerHTML = result;
+					}
+			
+				</script>
+			
+    </body>
+</html>
